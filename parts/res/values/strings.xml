@@ -31,4 +31,9 @@
     <string name="touch_sensitivity_summary">Control touch sensitivity for repeated taps</string>
     <string name="touch_resistant_title">Touch-resistant area</string>
     <string name="touch_resistant_summary">Reduce touch sensitivity near the edges to avoid triggering touch controls</string>
+
+    <!--  DT2W    -->
+    <string name="dt2w_enable_title">Double-Tap to Wake </string>
+    <string name="dt2w_enable_summary">Display boot in screen-off state by a double-tap</string>
+
 </resources>
