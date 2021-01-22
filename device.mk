@@ -230,6 +230,10 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.recovery.qcom.rc
 
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.2-service.gauguin
+
 # Telephony
 PRODUCT_PACKAGES += \
     ims-ext-common \
