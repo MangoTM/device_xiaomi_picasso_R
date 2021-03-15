@@ -24,7 +24,7 @@ include $(LOCAL_PATH)/system.prop
 include $(LOCAL_PATH)/product.prop  
 
 # Permissions
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.ims.xml \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.consumerir.xml \
     frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.wifi.aware.xml \
@@ -62,7 +62,7 @@ TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
 # Shipping API level
-PRODUCT_SHIPPING_API_LEVEL := 30
+PRODUCT_SHIPPING_API_LEVEL := 29
 
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
@@ -79,13 +79,31 @@ PRODUCT_PACKAGES += \
     com.dsi.ant@1.0
 
 # Atrace
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     android.hardware.atrace@1.0-service
 
 # Audio
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaacwrapper
+
+# Audio
+PRODUCT_PACKAGES += \
+    android.hardware.audio@6.0-impl \
+    android.hardware.audio.effect@6.0-impl \
+    android.hardware.audio.service \
+    vendor.qti.hardware.audiohalext@1.0 \
+    vendor.qti.hardware.audiohalext-utils
+
+PRODUCT_PACKAGES += \
+    audio.a2dp.default
+
+PRODUCT_PACKAGES += \
+    libqcomvoiceprocessingdescriptors
+
+PRODUCT_PACKAGES += \
+    tinymix \
+    libaudio-resampler
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/audio/audio_policy_configuration.xml \
@@ -108,8 +126,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     hardware/interfaces/camera/provider/2.4/default/android.hardware.camera.provider@2.4-service_64.rc:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/init/android.hardware.camera.provider@2.4-service_64.rc
+
+# Camera
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.camera.device@1.0
 
 # Display/Graphics
 PRODUCT_PACKAGES += \
@@ -143,6 +165,11 @@ PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
     android.hidl.manager@1.0
 
+# Health
+PRODUCT_PACKAGES += \
+    android.hardware.health@2.1-impl \
+    android.hardware.health@2.1-service
+
 # Hardware
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.freeform_window_management.xml \
@@ -172,10 +199,12 @@ PRODUCT_COPY_FILES += \
     
 # NFC
 PRODUCT_PACKAGES += \
+    android.hardware.nfc@1.2-service \
     com.android.nfc_extras \
     NfcNci \
     Tag \
-    SecureElement
+    SecureElement \
+    vendor.nxp.hardware.nfc@1.2-service
 
 # Overlay - notch style
 PRODUCT_PACKAGES += \
@@ -187,7 +216,10 @@ PRODUCT_PACKAGES += \
 
 #Powerstats
 PRODUCT_PACKAGES += \
-    android.hardware.power.stats@1.0-service
+    android.hardware.power.stats@1.0-service \
+    vendor.qti.hardware.perf@2.0 \
+    vendor.qti.hardware.perf@2.1 \
+    vendor.qti.hardware.perf@2.2
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -216,6 +248,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     lineage.trust@1.0-service
 
+PRODUCT_PACKAGES += \
+    RemovePackages
+
 # WiFi
 PRODUCT_PACKAGES += \
     TetheringConfigOverlay \
@@ -243,7 +278,11 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0
+    android.hardware.thermal@2.0-service.qti
+
+# Vulkan
+PRODUCT_PACKAGES += \
+    libvulkan
 
 # Power
 #PRODUCT_PACKAGES += \
@@ -271,3 +310,7 @@ PRODUCT_COPY_FILES += \
 #manifests
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/android.hardware.graphics.mapper-impl-qti-display.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/vintf/manifest/android.hardware.graphics.mapper-impl-qti-display.xml \
+
+# System Helper
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.systemhelper@1.0
