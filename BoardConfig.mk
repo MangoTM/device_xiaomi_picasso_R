@@ -59,6 +59,7 @@ TARGET_KERNEL_CONFIG := picasso_user_defconfig
 #TARGET_KERNEL_ADDITIONAL_FLAGS := \
 #    DTC_EXT=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/dtc/dtc
 
+TARGET_FORCE_PREBUILT_KERNEL := true
 
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
@@ -91,16 +92,6 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 #BOARD_CHARGER_ENABLE_SUSPEND := true
 
 
-# Dex
-ifeq ($(HOST_OS),linux)
-    ifneq ($(TARGET_BUILD_VARIANT),eng)
-        ifeq ($(WITH_DEXPREOPT),)
-            WITH_DEXPREOPT := true
-            WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-        endif
-    endif
-endif
-
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
@@ -113,9 +104,9 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_picasso
 TARGET_RECOVERY_DEVICE_MODULES := libinit_picasso
 
 # Prebuilt Core
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo10.3.img
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/boot10.3.img-zImage
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/boot10.3.img-dtb
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/boot17.3.img-zImage
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/boot17.3.img-dtb
 
 # Partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system product system_ext
