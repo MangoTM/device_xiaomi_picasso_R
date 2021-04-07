@@ -25,10 +25,10 @@ ro.netflix.bsp_rev=Q7250-19133-1
 persist.vendor.dpm.feature=11
 
 #Gboard
-ro.com.google.ime.kb_pad_port_l=7
-ro.com.google.ime.kb_pad_port_r=7
-ro.com.google.ime.kb_pad_land_l=14
-ro.com.google.ime.kb_pad_land_r=14
+#ro.com.google.ime.kb_pad_port_l=7
+#ro.com.google.ime.kb_pad_port_r=7
+#ro.com.google.ime.kb_pad_land_l=14
+#ro.com.google.ime.kb_pad_land_r=14
 
 # Graphics
 debug.sf.latch_unsignaled=1
@@ -135,3 +135,20 @@ ro.bluetooth.library_name=libbluetooth_qti.so
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
 persist.dbg.wfc_avail_ovr=1
+
+ro.config.ringtone=Ring_Synth_04.ogg
+ro.config.notification_sound=pixiedust.ogg
+ro.config.alarm_alert=Alarm_Classic.ogg
+ro.config.sms_received_sound=FadeIn.ogg
+ro.config.sms_delivered_sound=MessageComplete.ogg
+ro.config.elder-ringtone=Angel.mp3
+ro.vendor.radio.features_common=3
+ro.config.gnss.support=GPS,NavIC,BeiDou,GLONASS,Galileo
+#enable IZat OptInApp overlay
+persist.vendor.overlay.izat.optin=rro
+# Property for backup NTP Server
+persist.backup.ntpServer="0.pool.ntp.org"
+persist.timed.enable=true
+
+# Gboard
+ro.com.google.ime.kb_pad_port_b=1
