@@ -186,6 +186,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     org.ifaa.android.manager
 
+# Init
+PRODUCT_PACKAGES += \
+    init.qcom.rc \
+    init.smartcharging.rc
 
 # Input
 PRODUCT_COPY_FILES += \
