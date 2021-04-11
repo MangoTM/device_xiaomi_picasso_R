@@ -35,7 +35,7 @@ TARGET_BOOTLOADER_BOARD_NAME := lito
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm kpti=off
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
@@ -47,9 +47,9 @@ BOARD_KERNEL_OFFSET := 0x00008000
 BOARD_KERNEL_SECOND_OFFSET := 0x00000000
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
-NEED_KERNEL_MODULE_SYSTEM := true
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sm7250
-TARGET_KERNEL_CONFIG := picasso_user_defconfig
+#NEED_KERNEL_MODULE_SYSTEM := true
+TARGET_KERNEL_HEADERS := kernel/xiaomi/sm7250
+#TARGET_KERNEL_CONFIG := picasso_user_defconfig
 #TARGET_KERNEL_CLANG_COMPILE := true
 #KERNEL_SUPPORTS_LLVM_TOOLS := true
 #TARGET_KERNEL_CLANG_VERSION := proton
@@ -104,9 +104,9 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_picasso
 TARGET_RECOVERY_DEVICE_MODULES := libinit_picasso
 
 # Prebuilt Core
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/boot17.3.img-zImage
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/boot17.3.img-dtb
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo17.4.img
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/boot17.4.img-zImage
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/boot17.4.img-dtb
 
 # Partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system product system_ext
@@ -147,7 +147,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 
 
 # Power
-TARGET_USES_INTERACTION_BOOST := true
+#TARGET_USES_INTERACTION_BOOST := true
 
 # Recovery
 BOARD_INCLUDE_RECOVERY_DTBO := true
@@ -185,8 +185,20 @@ BOARD_VNDK_VERSION := current
 include vendor/xiaomi/picasso/BoardConfigVendor.mk
 
 # Enable real time lockscreen charging current values
-BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
+#BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 
 # HIDL
 DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
+
+# APEX
+DEXPREOPT_GENERATE_APEX_IMAGE := true
+
+# Display
+TARGET_USES_HWC2 := true
+
+# DRM
+TARGET_ENABLE_MEDIADRM_64 := true
+
+# USB
+TARGET_QTI_USB_SUPPORTS_AUDIO_ACCESSORY := true

@@ -17,5 +17,6 @@
          2 = left side
          3 = right side
     -->
-    <integer name="config_fingerprintSensorLocation">1</integer>
+    <integer name="config_fingerprintSensorLocation">3</integer>
+    <bool name="config_vibration_supports_multiple_intensities">true</bool>
 </resources>
