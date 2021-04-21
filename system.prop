@@ -152,3 +152,6 @@ persist.timed.enable=true
 
 # Gboard
 ro.com.google.ime.kb_pad_port_b=1
+
+# Perf
+ro.vendor.perf.scroll_opt=true
