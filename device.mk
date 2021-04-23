@@ -134,7 +134,7 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0
 
 # Display/Graphics
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     libdisplayconfig \
     libqdMetaData \
     libqdMetaData.system \
@@ -316,7 +316,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/android.hardware.graphics.mapper-impl-qti-display.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/vintf/manifest/android.hardware.graphics.mapper-impl-qti-display.xml \
 
 # System Helper
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     vendor.qti.hardware.systemhelper@1.0
 
 # GoogleCamera
@@ -324,4 +324,4 @@ PRODUCT_PACKAGES += \
     GoogleCamera
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/GoogleCamera/privapp-permissions-googlecamera.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googlecamera.xml
+    $(LOCAL_PATH)/Gcam/privapp-permissions-googlecamera.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googlecamera.xml
