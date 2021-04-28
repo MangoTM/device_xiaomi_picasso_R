@@ -104,9 +104,9 @@ TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_picasso
 TARGET_RECOVERY_DEVICE_MODULES := libinit_picasso
 
 # Prebuilt Core
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo22.4.img
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/boot22.4.img-zImage
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/boot22.4.img-dtb
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo21.1.8.img
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/boot21.1.8.img-zImage
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/boot21.1.8.img-dtb
 
 # Partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system product system_ext
