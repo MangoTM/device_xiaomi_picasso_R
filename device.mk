@@ -219,7 +219,7 @@ PRODUCT_PACKAGES += \
     XiaomiParts
 
 #Powerstats
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     android.hardware.power.stats@1.0-service \
     vendor.qti.hardware.perf@2.0 \
     vendor.qti.hardware.perf@2.1 \
@@ -232,7 +232,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service.gauguin
+    android.hardware.power@1.2-service.picasso
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -329,3 +329,13 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/Gcam/privapp-permissions-googlecamera.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googlecamera.xml
+
+# Power
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_SYSTEM)/etc/powerhint.json
+
+# framework detect libs
+PRODUCT_PACKAGES += libvndfwk_detect_jni.qti
+PRODUCT_PACKAGES += libqti_vndfwk_detect
+PRODUCT_PACKAGES += libvndfwk_detect_jni.qti.vendor
+PRODUCT_PACKAGES += libqti_vndfwk_detect.vendor
