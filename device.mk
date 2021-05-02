@@ -339,3 +339,10 @@ PRODUCT_PACKAGES += libvndfwk_detect_jni.qti
 PRODUCT_PACKAGES += libqti_vndfwk_detect
 PRODUCT_PACKAGES += libvndfwk_detect_jni.qti.vendor
 PRODUCT_PACKAGES += libqti_vndfwk_detect.vendor
+
+
+# Sounds
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.config.ringtone=Mi.ogg \
+    ro.config.notification_sound=Ariel.ogg \
+    ro.config.alarm_alert=Fireflies.ogg
