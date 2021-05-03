@@ -346,3 +346,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.ringtone=Mi.ogg \
     ro.config.notification_sound=Ariel.ogg \
     ro.config.alarm_alert=Fireflies.ogg
+
+# Lights
+PRODUCT_PACKAGES += \
+    android.hardware.lights-service.xiaomi_picasso

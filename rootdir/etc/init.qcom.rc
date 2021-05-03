@@ -43,6 +43,9 @@ on property:init.svc.tcpdump=running
 on property:init.svc.vendor.ipacm-diag=running
     stop vendor.ipacm-diag
 
+service vendor.light-qti /system/bin/true
+    disabled
+
 # perf tuning
 on property:vendor.post_boot.parsed=1
     # Setup runtime cpusets
