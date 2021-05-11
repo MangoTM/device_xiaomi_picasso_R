@@ -2,3 +2,10 @@ allow system_app sysfs_kgsl:file r_file_perms;
 allow system_app sysfs_device_info:file r_file_perms;
 
 hal_client_domain(system_app, hal_mlipay)
+
+allow system_app sysfs_zram:dir { search };
+
+#allow system_app hal_power_default:binder { call };
+allow system_app storaged:binder { call };
+allow system_app wificond:binder { call };
+

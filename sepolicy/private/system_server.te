@@ -7,3 +7,8 @@ get_prop(system_server, vendor_persist_camera_prop)
 
 #Smart charging
 allow system_server vendor_sysfs_battery_supply:file { getattr open read write };
+
+# Allow system_server to read Fast Charging status
+allow system_server vendor_sysfs_battery_supply:file { getattr open read };
+
+#allow system_server vendor_display_notch_prop:file { read };
