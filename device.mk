@@ -21,26 +21,13 @@ $(call inherit-product, vendor/xiaomi/picasso/picasso-vendor.mk)
 # Inherit properties
 include $(LOCAL_PATH)/properties.mk
 include $(LOCAL_PATH)/system.prop
-include $(LOCAL_PATH)/product.prop  
-
-# Permissions
-#PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.ims.xml \
-    frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.consumerir.xml \
-    frameworks/native/data/etc/android.hardware.wifi.aware.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.wifi.aware.xml \
-    frameworks/native/data/etc/android.hardware.wifi.rtt.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.wifi.rtt.xml
-
+include $(LOCAL_PATH)/product.prop
 
 PRODUCT_COMPATIBLE_PROPERTY_OVERRIDE := true
 
-# APN
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/apns-conf.xml:system/etc/apns-conf.xml
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay
 
 # Overlays -- Override vendor ones
 PRODUCT_PACKAGES += \
@@ -54,8 +41,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     device/xiaomi/picasso \
     hardware/xiaomi
-  #  vendor/qcom/opensource/commonsys/packages/apps/Bluetooth \
-  #  vendor/qcom/opensource/commonsys/system/bt/conf
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2400
@@ -77,15 +62,6 @@ PRODUCT_PACKAGES += \
     AntHalService-Soong \
     com.dsi.ant.antradio_library \
     com.dsi.ant@1.0
-
-# Atrace
-#PRODUCT_PACKAGES += \
-    android.hardware.atrace@1.0-service
-
-# Audio
-#PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    libaacwrapper
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -122,19 +98,21 @@ PRODUCT_PACKAGES += \
     libbtconfigstore \
     bt_configstore.conf
 
-# Camera
-#PRODUCT_PACKAGES += \
-    Snap
-
-#PRODUCT_COPY_FILES += \
-    hardware/interfaces/camera/provider/2.4/default/android.hardware.camera.provider@2.4-service_64.rc:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/init/android.hardware.camera.provider@2.4-service_64.rc
 
 # Camera
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0
 
+# Configstore
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.capabilityconfigstore@1.0
+
+# Component overrides
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/component-overrides_qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/component-overrides.xml
+
 # Display/Graphics
-#PRODUCT_PACKAGES += \
+PRODUCT_PACKAGES += \
     libdisplayconfig \
     libqdMetaData \
     libqdMetaData.system \
@@ -146,7 +124,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@2.0 \
     vendor.qti.hardware.display.composer@3.0
 
-    # Fastbootd
+# Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
 
@@ -160,15 +138,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom
 
+# GoogleCamera
+PRODUCT_PACKAGES += \
+    GoogleCamera
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/Gcam/privapp-permissions-googlecamera.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googlecamera.xml
+
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
-    android.hidl.manager@1.0
-
-# Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
+    android.hidl.manager@1.0 \
+    libhidltransport \
+    libhwbinder
 
 # Hardware
 PRODUCT_COPY_FILES += \
@@ -178,7 +160,7 @@ PRODUCT_COPY_FILES += \
 # HotwordEnrollement
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
-    
+
 # IFAA manager
 PRODUCT_PACKAGES += \
     org.ifaa.android.manager
@@ -200,7 +182,31 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-fpc.kl \
     $(LOCAL_PATH)/keylayout/uinput-goodix.kl:$(TARGET_COPY_OUT_SYSTEM)/usr/keylayout/uinput-goodix.kl
-    
+ 
+# Lights
+PRODUCT_PACKAGES += \
+    android.hardware.lights-service.xiaomi_picasso
+
+# Modules
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/modules,$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/lib/modules)
+
+#Miui sounds
+PRODUCT_COPY_FILES += \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/alarms,$(TARGET_COPY_OUT_SYSTEM)/media/audio/alarms) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/ringtones,$(TARGET_COPY_OUT_SYSTEM)/media/audio/ringtones) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/notifications,$(TARGET_COPY_OUT_SYSTEM)/media/audio/notifications) \
+    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/ui,$(TARGET_COPY_OUT_SYSTEM)/media/audio/ui)
+
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.config.ringtone=Mi.ogg \
+    ro.config.notification_sound=Ariel.ogg \
+    ro.config.alarm_alert=Fireflies.ogg
+
+# Net
+PRODUCT_PACKAGES += \
+    netutils-wrapper-1.0
+
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc@1.2-service \
@@ -213,26 +219,19 @@ PRODUCT_PACKAGES += \
 # Overlay - notch style
 PRODUCT_PACKAGES += \
     NotchNoFillOverlay
-    
-    # Parts
+
+# Parts
 PRODUCT_PACKAGES += \
     XiaomiParts
 
-#Powerstats
-#PRODUCT_PACKAGES += \
-    android.hardware.power.stats@1.0-service \
-    vendor.qti.hardware.perf@2.0 \
-    vendor.qti.hardware.perf@2.1 \
-    vendor.qti.hardware.perf@2.2
+# Perf
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.perf@2.0
 
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.recovery.qcom.rc
-
-# Power
-PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service.picasso
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -252,12 +251,16 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/telephony_system-ext_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml \
     $(LOCAL_PATH)/configs/com.android.carrierconfig.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/com.android.carrierconfig.xml
 
-# Trust HAL
-#PRODUCT_PACKAGES += \
-    lineage.trust@1.0-service
-
 PRODUCT_PACKAGES += \
     RemovePackages
+
+# Thermal
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/thermal/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@2.0-service.qti
 
 # WiFi
 PRODUCT_PACKAGES += \
@@ -279,74 +282,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/system/etc/sysconfig/qti_whitelist.xml \
     $(LOCAL_PATH)/configs/qti_whitelist_system_ext.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/system_ext/etc/sysconfig/qti_whitelist_system_ext.xml
 
-# Thermal
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/thermal/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
 
 
-# Thermal
-PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0-service.qti
-
-# Vulkan
-PRODUCT_PACKAGES += \
-    libvulkan
-
-# Power
-#PRODUCT_PACKAGES += \
-#    android.hardware.power-service.picasso
-
-# Configstore
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.capabilityconfigstore@1.0
-
-# Component overrides
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/component-overrides_qti.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/component-overrides.xml
-
-# Modules
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/modules,$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/lib/modules)
-
-#miui ringtones
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/alarms,$(TARGET_COPY_OUT_SYSTEM)/media/audio/alarms) \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/ringtones,$(TARGET_COPY_OUT_SYSTEM)/media/audio/ringtones) \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/notifications,$(TARGET_COPY_OUT_SYSTEM)/media/audio/notifications) \
-    $(call find-copy-subdir-files,*,$(LOCAL_PATH)/media/ui,$(TARGET_COPY_OUT_SYSTEM)/media/audio/ui)
-
-#manifests
-#PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/android.hardware.graphics.mapper-impl-qti-display.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/vintf/manifest/android.hardware.graphics.mapper-impl-qti-display.xml \
-
-# System Helper
-#PRODUCT_PACKAGES += \
-    vendor.qti.hardware.systemhelper@1.0
-
-# GoogleCamera
-PRODUCT_PACKAGES += \
-    GoogleCamera
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/Gcam/privapp-permissions-googlecamera.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-googlecamera.xml
-
-# Power
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_SYSTEM)/etc/powerhint.json
-
-# framework detect libs
-PRODUCT_PACKAGES += libvndfwk_detect_jni.qti
-PRODUCT_PACKAGES += libqti_vndfwk_detect
-PRODUCT_PACKAGES += libvndfwk_detect_jni.qti.vendor
-PRODUCT_PACKAGES += libqti_vndfwk_detect.vendor
 
 
-# Sounds
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.ringtone=Mi.ogg \
-    ro.config.notification_sound=Ariel.ogg \
-    ro.config.alarm_alert=Fireflies.ogg
-
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.lights-service.xiaomi_picasso
