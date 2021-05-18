@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/palladium_picasso.mk
+    $(LOCAL_DIR)/evolution_picasso.mk

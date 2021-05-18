@@ -12,10 +12,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/xiaomi/picasso/device.mk)
 
 # Inherit some common Lineage stuff.
-$(call inherit-product, vendor/palladium/config/common_full_phone.mk)
+$(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := palladium_picasso
+PRODUCT_NAME := evolution_picasso
 PRODUCT_DEVICE := picasso
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Redmi K30 5G
@@ -29,13 +29,9 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 #Gapps
 WITH_GAPPS := true
-PALLADIUM_BUILD_VARIANT := GAPPS
+evolution_BUILD_VARIANT := GAPPS
 TARGET_GAPPS_ARCH := arm64
 TARGET_SUPPORTS_GOOGLE_RECORDER := false
 TARGET_INCLUDE_STOCK_ARCORE := true
 
-PALLADIUM_BUILDTYPE := OFFICIAL
 
-#PALLADIUM-PROPS
-PRODUCT_PRODUCT_PROPERTIES += \
-	ro.palladiumdevice.maintainer=MangoTM \
