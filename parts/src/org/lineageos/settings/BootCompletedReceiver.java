@@ -25,7 +25,7 @@ import org.lineageos.settings.thermal.ThermalUtils;
 import vendor.xiaomi.hardware.touchfeature.V1_0.ITouchFeature;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
-    
+
     public static final String SHAREDD2TW = "sharadeD2TW";
     private ITouchFeature mTouchFeature;
     @Override
@@ -33,13 +33,13 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         // Thermal Profiles
         ThermalUtils.initialize(context);
-    }
     //Micro-Service to restore sata of dt2w on reboot
-        SharedPreferences prefs = context.getSharedPreferences(SHAREDD2TW, Context.MODE_PRIVATE); 
+        SharedPreferences prefs = context.getSharedPreferences(SHAREDD2TW, Context.MODE_PRIVATE);
         try {
             mTouchFeature = ITouchFeature.getService();
             mTouchFeature.setTouchMode(14,prefs.getInt(SHAREDD2TW, 1));
         } catch (Exception e) {
             // Do nothing
         }
+    }
 }
