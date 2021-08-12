@@ -58,7 +58,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
     sys.fflag.override.settings_seamless_transfer=true
 
 # AOSP Dynamic Refresh Rate
-PRODUCT_PRODUCT_PROPERTIES += \
+#PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.set_display_power_timer_ms=1000 \
     ro.surface_flinger.set_idle_timer_ms=200 \
     ro.surface_flinger.set_touch_timer_ms=200 \
