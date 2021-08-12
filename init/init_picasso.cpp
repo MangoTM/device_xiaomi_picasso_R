@@ -66,11 +66,11 @@ constexpr const char *DEVICES[] = {
 };
 
 constexpr const char *BUILD_DESCRIPTION[] = {
-    "coral-user 11 RQ2A.210505.002 7246365 release-keys",
+    "redfin-user 11 RQ3A.210805.001.A1 7474174 release-keys",
 };
 
 constexpr const char *BUILD_FINGERPRINT[] = {
-    "google/coral/coral:11/RQ2A.210505.002/7246365:user/"
+    "google/redfin/redfin:11/RQ3A.210805.001.A1/7474174:user/"
     "release-keys",
 };
 
