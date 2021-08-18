@@ -171,7 +171,8 @@ PRODUCT_BOOT_JARS += \
 # Init
 PRODUCT_PACKAGES += \
     init.qcom.rc \
-    init.smartcharging.rc
+    init.smartcharging.rc \
+    init.performance_level.rc
 
 # Input
 PRODUCT_COPY_FILES += \
