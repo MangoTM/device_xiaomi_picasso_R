@@ -217,7 +217,7 @@ PRODUCT_PACKAGES += \
     vendor.nxp.hardware.nfc@1.2-service
 
 # Overlay - notch style
-PRODUCT_PACKAGES += \
+#PRODUCT_PACKAGES += \
     NotchNoFillOverlay
 
 # Parts
